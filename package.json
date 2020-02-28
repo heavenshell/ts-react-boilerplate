@@ -1,0 +1,163 @@
+{
+  "name": "ts-react-boilerplate",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "BSD-3-Clause",
+  "private": true,
+  "dependencies": {
+    "@emotion/core": "10.0.28",
+    "@emotion/styled": "10.0.27",
+    "@fullcalendar/core": "4.4.0",
+    "@fullcalendar/daygrid": "4.4.0",
+    "@fullcalendar/interaction": "4.4.0",
+    "@fullcalendar/react": "4.4.0",
+    "@fullcalendar/resource-common": "4.4.0",
+    "@fullcalendar/resource-timeline": "4.4.0",
+    "@fullcalendar/timegrid": "4.4.0",
+    "antd": "4.0.0",
+    "axios": "0.19.2",
+    "date-fns": "2.10.0",
+    "emotion": "10.0.27",
+    "emotion-theming": "10.0.27",
+    "formik": "2.1.4",
+    "libreact": "2.13.2",
+    "path-to-regexp": "6.1.0",
+    "query-string": "5.1.1",
+    "react": "16.13.0",
+    "react-color": "2.18.0",
+    "react-dom": "16.13.0",
+    "react-fast-compare": "3.0.1",
+    "react-redux": "7.2.0",
+    "react-router-dom": "5.1.2",
+    "redux": "4.0.5",
+    "redux-aggregate": "2.1.2",
+    "redux-thunk": "2.3.0",
+    "styled-system": "5.1.5",
+    "yup": "0.28.1"
+  },
+  "devDependencies": {
+    "@babel/core": "7.8.6",
+    "@storybook/addon-actions": "5.3.14",
+    "@storybook/addon-knobs": "5.3.14",
+    "@storybook/addon-links": "5.3.14",
+    "@storybook/addon-viewport": "5.3.14",
+    "@storybook/addons": "5.3.14",
+    "@storybook/cli": "5.3.14",
+    "@storybook/react": "5.3.14",
+    "@testing-library/react-hooks": "3.2.1",
+    "@types/enzyme": "3.10.5",
+    "@types/enzyme-adapter-react-16": "1.0.6",
+    "@types/faker": "4.1.10",
+    "@types/html-webpack-plugin": "3.2.2",
+    "@types/jest": "25.1.3",
+    "@types/mini-css-extract-plugin": "0.9.1",
+    "@types/optimize-css-assets-webpack-plugin": "5.0.1",
+    "@types/query-string": "5.1.0",
+    "@types/react": "16.9.23",
+    "@types/react-color": "3.0.1",
+    "@types/react-dom": "16.9.5",
+    "@types/react-lifecycles-compat": "3.0.1",
+    "@types/react-redux": "7.1.7",
+    "@types/react-router-dom": "5.1.3",
+    "@types/storybook__react": "5.2.1",
+    "@types/styled-system": "5.1.7",
+    "@types/terser-webpack-plugin": "2.2.0",
+    "@types/webpack": "4.41.7",
+    "@types/webpack-dev-server": "3.10.0",
+    "@types/yup": "0.26.32",
+    "@typescript-eslint/eslint-plugin": "2.21.0",
+    "@typescript-eslint/parser": "2.21.0",
+    "axios-mock-adapter": "1.17.0",
+    "babel-loader": "8.0.6",
+    "cpx": "1.5.0",
+    "css-loader": "3.4.2",
+    "enzyme": "3.11.0",
+    "enzyme-adapter-react-16": "1.15.2",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.10.0",
+    "eslint-plugin-import": "2.20.1",
+    "eslint-plugin-prettier": "3.1.2",
+    "eslint-plugin-react": "7.18.3",
+    "eslint-plugin-react-hooks": "2.5.0",
+    "faker": "4.1.0",
+    "html-webpack-plugin": "3.2.0",
+    "jest": "25.1.0",
+    "jest-enzyme": "7.1.2",
+    "less": "3.11.1",
+    "less-loader": "5.0.0",
+    "lint-staged": "10.0.8",
+    "markdownlint-cli": "0.22.0",
+    "mini-css-extract-plugin": "0.9.0",
+    "npm-run-all": "4.1.5",
+    "optimize-css-assets-webpack-plugin": "5.0.3",
+    "prettier": "1.19.1",
+    "react-hooks-testing-library": "0.6.0",
+    "react-lifecycles-compat": "3.0.4",
+    "redux-devtools-extension": "2.13.8",
+    "shipjs": "0.16.0",
+    "storycap": "2.3.5",
+    "style-loader": "1.1.3",
+    "terser-webpack-plugin": "2.3.5",
+    "ts-config-webpack-plugin": "1.4.0",
+    "ts-jest": "25.2.1",
+    "ts-node": "8.6.2",
+    "typescript": "3.8.2",
+    "webpack": "4.41.6",
+    "webpack-cli": "3.3.11",
+    "webpack-dev-server": "3.10.3"
+  },
+  "resolutions": {
+    "@types/react": "16.9.19",
+    "@types/react-dom": "16.9.5",
+    "@types/hoist-non-react-statics": "3.3.1",
+    "hoist-non-react-statics": "^3.3.0"
+  },
+  "scripts": {
+    "build": "webpack --mode production",
+    "build-storybook": "build-storybook",
+    "precommit": "lint-staged",
+    "start": "webpack-dev-server --mode development --open --history-api-fallback",
+    "storybook": "start-storybook -p 6006",
+    "lint:ts": "eslint 'src/**/*.ts{,x}'",
+    "lint:md": "markdownlint README.md",
+    "lint": "run-p -l lint:*",
+    "test": "jest --maxWorkers=1",
+    "screenshot": "storycap --serverCmd 'start-storybook -p 6006' --serverTimeout 100000 http://localhost:6006 -i '**/Regression'"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./configs/jest.setup.ts"
+    ],
+    "testURL": "http://localhost/",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testMatch": [
+      "**/src/**/*.spec.ts?(x)"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "<rootDir>/configs/tsconfig.test.json"
+      }
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
