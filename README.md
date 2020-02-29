@@ -1,5 +1,7 @@
 # ts-react-boilerplate
 
+![build](https://github.com/heavenshell/ts-react-boilerplate/workflows/build/badge.svg)
+
 My boilerplate
 
 ## Install
