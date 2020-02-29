@@ -1,6 +1,6 @@
 module.exports = {
   mergeStrategy: { toSameBranch: ['master'] },
-  updateChangelog: false,
+  updateChangelog: true,
   publishCommand: ({ tag }) => (
     `echo Start publish ${tag}`
   ),

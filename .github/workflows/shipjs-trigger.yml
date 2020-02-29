@@ -5,6 +5,7 @@ on:
       - master
 jobs:
   build:
+    if: "contains(github.event.head_commit.message, 'chore: release ')"
     name: Release
     runs-on: ubuntu-latest
     steps:
@@ -24,8 +25,9 @@ jobs:
           echo "Run shipjs-trigger.yml"
           echo ${{ github.ref }}
           echo ${{ github.event_name }}
-          echo ${{ toJson(github) }}
-          npm run release:trigger
+          echo ${{ github.head_ref }}
+          echo ${{ github.event.head_commit.message }}
+          # npm run release:trigger
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # SLACK_INCOMING_HOOK: ${{ secrets.SLACK_INCOMING_HOOK }}
