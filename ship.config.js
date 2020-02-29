@@ -1,1 +1,4 @@
-module.exports = { mergeStrategy: { toSameBranch: ['master'] } }
+module.exports = {
+  mergeStrategy: { toSameBranch: ['master'] },
+  updateChangelog: false,
+}
