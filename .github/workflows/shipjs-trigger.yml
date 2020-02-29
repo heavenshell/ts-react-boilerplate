@@ -22,12 +22,7 @@ jobs:
             npm install
           fi
       - run: |
-          echo "Run shipjs-trigger.yml"
-          echo ${{ github.ref }}
-          echo ${{ github.event_name }}
-          echo ${{ github.head_ref }}
-          echo ${{ github.event.head_commit.message }}
-          # npm run release:trigger
+          npm run release:trigger
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # SLACK_INCOMING_HOOK: ${{ secrets.SLACK_INCOMING_HOOK }}
