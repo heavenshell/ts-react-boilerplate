@@ -122,27 +122,18 @@
     "lint:md": "markdownlint README.md",
     "lint": "run-p -l lint:*",
     "test": "jest --maxWorkers=1",
-    "screenshot": "storycap --serverCmd 'start-storybook -p 6006' --serverTimeout 100000 http://localhost:6006 -i '**/Regression'"
+    "screenshot": "storycap --serverCmd 'start-storybook -p 6006' --serverTimeout 100000 http://localhost:6006 -i '**/Regression'",
+    "release:prepare": "shipjs prepare",
+    "release:trigger": "shipjs trigger"
   },
   "jest": {
-    "setupFilesAfterEnv": [
-      "./configs/jest.setup.ts"
-    ],
+    "setupFilesAfterEnv": ["./configs/jest.setup.ts"],
     "testURL": "http://localhost/",
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
-    "testMatch": [
-      "**/src/**/*.spec.ts?(x)"
-    ],
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ],
+    "testMatch": ["**/src/**/*.spec.ts?(x)"],
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
     "globals": {
       "ts-jest": {
         "tsConfig": "<rootDir>/configs/tsconfig.test.json"
@@ -150,10 +141,7 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint --fix",
-      "git add"
-    ]
+    "*.{ts,tsx}": ["eslint --fix", "git add"]
   },
   "husky": {
     "hooks": {
