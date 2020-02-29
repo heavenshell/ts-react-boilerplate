@@ -26,6 +26,8 @@
     }
   ],
   "ignoreDeps": [
+    "query-string",
+    "@types/query-string"
   ],
   "schedule": [
     "after 10pm and before 5am on sunday"
