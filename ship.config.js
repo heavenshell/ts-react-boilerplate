@@ -24,7 +24,7 @@ module.exports = {
     const fs = require('fs')
     const path = require('path')
 
-    const octokit = getoctokit()
+    const octokit = getOctokit()
     const { data } = await octokit.repos.listReleases({ owner, repo })
     const drafts = data.filter(d => d.draft === true && d.name.startsWith('v'))
     console.log(`> draft length is ${drafts.length}`)
