@@ -1,12 +1,14 @@
+const fs = require('fs')
+const path = require('path')
+const dotenv = require('dotenv')
+const { Octokit } = require('@octokit/rest')
+
 const owner = 'heavenshell'
 const repo = 'ts-react-boilerplate'
 
+dotenv.config({ path: path.resolve('.', '.env') })
+
 const getOctokit = () => {
-  const { Octokit } = require('@octokit/rest')
-  const dotenv = require('dotenv')
-
-  dotenv.config({ path: path.resolve('.', '.env') })
-
   const octokit = new Octokit({
     auth: `token ${process.env.GITHUB_TOKEN}`,
   });
@@ -21,8 +23,6 @@ module.exports = {
     `echo Start publish ${tag}`
   ),
   afterPublish: async ({ version, releaseTag }) => {
-    const fs = require('fs')
-    const path = require('path')
 
     const octokit = getOctokit()
     const { data } = await octokit.repos.listReleases({ owner, repo })
@@ -39,8 +39,6 @@ module.exports = {
   },
   releases: {
     extractChangelog: ({ version, dir }) => {
-      const fs = require('fs')
-      const path = require('path')
       try {
         const changelogFilePath = path.resolve('.', 'changelog.json')
         if (fs.existsSync(changelogFilePath)) {
