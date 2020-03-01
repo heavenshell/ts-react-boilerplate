@@ -56,7 +56,7 @@ module.exports = {
         }
       } catch(e) {
       }
-      return 'Add CHANGELOG manually...'
+      return `Add CHANGELOG manually.\nCopy from draft ${version}'s release note`
     }
   }
 }
