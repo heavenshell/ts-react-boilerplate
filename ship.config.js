@@ -11,6 +11,7 @@ module.exports = {
     const path = require('path')
     const dotenv = require('dotenv')
     const { Octokit } = require('@octokit/rest')
+    const print = require('shipjs/src/util/print')
 
     dotenv.config({ path: path.resolve('.', '.env') })
 
@@ -25,12 +26,15 @@ module.exports = {
         path.resolve('.', `changelog.json`),
         JSON.stringify(drafts[0])
       )
+    } else {
+      print(`> draft not found.`)
     }
   },
   releases: {
     extractChangelog: ({ version, dir }) => {
       const fs = require('fs')
       const path = require('path')
+      const print = require('shipjs/src/util/print')
       try {
         const changelogFilePath = path.resolve('.', 'changelog.json')
         if (fs.existsSync(changelogFilePath)) {
@@ -48,13 +52,17 @@ module.exports = {
               repo,
               release_id: drafts[0].id,
             }).then(() => {
+              print(`> delte draft suceed.`)
             }).catch(() => {
+              print(`> delete draft failed.`)
             })
           }
 
           return body
         }
+        print(`> ${changelogFilePath} not found.`)
       } catch(e) {
+        print(`> Exception raised.`)
       }
       return `Add CHANGELOG manually.\nCopy from draft ${version}'s release note`
     }
