@@ -43,7 +43,6 @@ module.exports = {
           const body = changelog['body'].replace(`...${version}`, `...v${version}`)
           return body
         }
-        return 'Add CHANGELOG manually...'
       } catch(e) {
       }
       return 'Add CHANGELOG manually...'
