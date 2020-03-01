@@ -1,3 +1,5 @@
+const owner = 'heavenshell'
+const repo = 'ts-react-boilerplate'
 module.exports = {
   mergeStrategy: { toSameBranch: ['master'] },
   updateChangelog: false,
@@ -16,10 +18,7 @@ module.exports = {
       auth: `token ${process.env.GITHUB_TOKEN}`,
     });
 
-    const { data } = await octokit.repos.listReleases({
-      owner: 'heavenshell',
-      repo: 'ts-react-boilerplate'
-    })
+    const { data } = await octokit.repos.listReleases({ owner, repo })
     const drafts = data.filter(d => d.draft === true && d.name.startsWith('v'))
     if (drafts.length) {
       fs.writeFileSync(
@@ -40,7 +39,19 @@ module.exports = {
           fs.unlink(changelogFilePath, (err) => {})
 
           // Replact version no to tag name
-          const body = changelog['body'].replace(`...${version}`, `...v${version}`)
+          const body = changelog['body'].replace(
+            `...${version}`, `...v${version}`
+          )
+          if (changelog['draft']) {
+            octokit.repos.deleteRelease({
+              owner,
+              repo,
+              release_id: drafts[0].id,
+            }).then(() => {
+            }).catch(() => {
+            })
+          }
+
           return body
         }
       } catch(e) {
