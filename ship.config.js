@@ -1,6 +1,6 @@
 module.exports = {
   mergeStrategy: { toSameBranch: ['master'] },
-  updateChangelog: true,
+  updateChangelog: false,
   publishCommand: ({ tag }) => (
     `echo Start publish ${tag}`
   ),
@@ -22,6 +22,7 @@ module.exports = {
     }).then(({ data }) => {
       const drafts = data.filter(d => d.draft === true && d.name.startsWith('v'))
       if (drafts.length) {
+        console.log(drafts[0]);
         fs.writeFileSync(
           path.resolve('.', `changelog.json`),
           JSON.stringify(drafts[0])
@@ -40,6 +41,7 @@ module.exports = {
           const changelog = JSON.parse(fs.readFileSync(changelogFilePath))
           // Delete temp changelog
           fs.unlinkSync(changelogFilePath)
+          console.log(changelog['body']);
 
           return changelog['body']
         }
