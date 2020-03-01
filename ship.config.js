@@ -1,5 +1,19 @@
 const owner = 'heavenshell'
 const repo = 'ts-react-boilerplate'
+
+const getOctokit = () => {
+  const { Octokit } = require('@octokit/rest')
+  const dotenv = require('dotenv')
+
+  dotenv.config({ path: path.resolve('.', '.env') })
+
+  const octokit = new Octokit({
+    auth: `token ${process.env.GITHUB_TOKEN}`,
+  });
+
+  return octokit
+}
+
 module.exports = {
   mergeStrategy: { toSameBranch: ['master'] },
   updateChangelog: false,
@@ -9,15 +23,8 @@ module.exports = {
   afterPublish: async ({ version, releaseTag }) => {
     const fs = require('fs')
     const path = require('path')
-    const dotenv = require('dotenv')
-    const { Octokit } = require('@octokit/rest')
 
-    dotenv.config({ path: path.resolve('.', '.env') })
-
-    const octokit = new Octokit({
-      auth: `token ${process.env.GITHUB_TOKEN}`,
-    });
-
+    const octokit = getoctokit()
     const { data } = await octokit.repos.listReleases({ owner, repo })
     const drafts = data.filter(d => d.draft === true && d.name.startsWith('v'))
     console.log(`> draft length is ${drafts.length}`)
@@ -46,6 +53,8 @@ module.exports = {
             `...${version}`, `...v${version}`
           )
           if (changelog['draft']) {
+            const octokit = getOctokit()
+
             octokit.repos.deleteRelease({
               owner,
               repo,
