@@ -62,6 +62,7 @@ module.exports = {
         console.log(`> ${changelogFilePath} not found.`)
       } catch(e) {
         console.log(`> Exception raised.`)
+        console.log(e.toString())
       }
       return `Add CHANGELOG manually.\nCopy from draft ${version}'s release note`
     }
