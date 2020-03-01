@@ -23,18 +23,16 @@ module.exports = {
     `echo Start publish ${tag}`
   ),
   afterPublish: async ({ version, releaseTag }) => {
-
     const octokit = getOctokit()
     const { data } = await octokit.repos.listReleases({ owner, repo })
     const drafts = data.filter(d => d.draft === true && d.name.startsWith('v'))
-    console.log(`> draft length is ${drafts.length}`)
     if (drafts.length) {
       fs.writeFileSync(
         path.resolve('.', `changelog.json`),
         JSON.stringify(drafts[0])
       )
     } else {
-      console.log(`> draft not found.`)
+      console.log(`> Draft not found.`)
     }
   },
   releases: {
@@ -58,9 +56,9 @@ module.exports = {
               repo,
               release_id: changelog['id'],
             }).then(() => {
-              console.log(`> delte draft suceed.`)
+              console.log(`> Delete draft suceed.`)
             }).catch(() => {
-              console.log(`> delete draft failed.`)
+              console.log(`> Delete draft failed.`)
             })
           }
 
