@@ -56,7 +56,7 @@ module.exports = {
             octokit.repos.deleteRelease({
               owner,
               repo,
-              release_id: drafts[0].id,
+              release_id: changelog['id'],
             }).then(() => {
               console.log(`> delte draft suceed.`)
             }).catch(() => {
