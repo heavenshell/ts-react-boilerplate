@@ -4,7 +4,7 @@ module.exports = {
   publishCommand: ({ tag }) => (
     `echo Start publish ${tag}`
   ),
-  afterPublish: ({ version, releaseTag }) => {
+  afterPublish: async ({ version, releaseTag }) => {
     const fs = require('fs')
     const path = require('path')
     const dotenv = require('dotenv')
@@ -16,38 +16,37 @@ module.exports = {
       auth: `token ${process.env.GITHUB_TOKEN}`,
     });
 
-    octokit.repos.listReleases({
+    const { data } = await octokit.repos.listReleases({
       owner: 'heavenshell',
       repo: 'ts-react-boilerplate'
-    }).then(({ data }) => {
-      const drafts = data.filter(d => d.draft === true && d.name.startsWith('v'))
-      if (drafts.length) {
-        console.log(drafts[0]);
-        fs.writeFileSync(
-          path.resolve('.', `changelog.json`),
-          JSON.stringify(drafts[0])
-        )
-      }
-    }).catch(e => {
-      // Maybe GitHub is down...
-    });
+    })
+    const drafts = data.filter(d => d.draft === true && d.name.startsWith('v'))
+    if (drafts.length) {
+      fs.writeFileSync(
+        path.resolve('.', `changelog.json`),
+        JSON.stringify(drafts[0])
+      )
+    }
   },
-  release: {
+  releases: {
     extractChangelog: ({ version, dir }) => {
       const fs = require('fs')
+      const path = require('path')
       try {
-        const changelogFilePath = path.resolve('.', `changelog.json`)
+        const changelogFilePath = path.resolve('.', 'changelog.json')
         if (fs.existsSync(changelogFilePath)) {
           const changelog = JSON.parse(fs.readFileSync(changelogFilePath))
           // Delete temp changelog
-          fs.unlinkSync(changelogFilePath)
-          console.log(changelog['body']);
+          fs.unlink(changelogFilePath, (err) => {})
 
-          return changelog['body']
+          // Replact version no to tag name
+          const body = changelog['body'].replace(`...${version}`, `...v${version}`)
+          return body
         }
         return 'Add CHANGELOG manually...'
       } catch(e) {
       }
+      return 'Add CHANGELOG manually...'
     }
   }
 }
