@@ -2,7 +2,7 @@ const owner = 'heavenshell'
 const repo = 'ts-react-boilerplate'
 module.exports = {
   mergeStrategy: { toSameBranch: ['master'] },
-  updateChangelog: false,
+  updateChangelog: true,
   publishCommand: ({ tag }) => (
     `echo Start publish ${tag}`
   ),
