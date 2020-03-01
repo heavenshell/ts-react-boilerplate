@@ -20,6 +20,7 @@ module.exports = {
 
     const { data } = await octokit.repos.listReleases({ owner, repo })
     const drafts = data.filter(d => d.draft === true && d.name.startsWith('v'))
+    console.log(`> draft length is ${drafts.length}`)
     if (drafts.length) {
       fs.writeFileSync(
         path.resolve('.', `changelog.json`),
