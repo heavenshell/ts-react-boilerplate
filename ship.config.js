@@ -36,7 +36,7 @@ module.exports = {
       const fs = require('fs')
       try {
         const changelogFilePath = path.resolve('.', `changelog.json`)
-        if (fs.existsSync(changelogFilePath) {
+        if (fs.existsSync(changelogFilePath)) {
           const changelog = JSON.parse(fs.readFileSync(changelogFilePath))
           // Delete temp changelog
           fs.unlinkSync(changelogFilePath)
