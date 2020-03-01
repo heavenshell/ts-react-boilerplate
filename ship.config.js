@@ -2,7 +2,7 @@ const owner = 'heavenshell'
 const repo = 'ts-react-boilerplate'
 module.exports = {
   mergeStrategy: { toSameBranch: ['master'] },
-  updateChangelog: true,
+  updateChangelog: false,
   publishCommand: ({ tag }) => (
     `echo Start publish ${tag}`
   ),
@@ -20,6 +20,7 @@ module.exports = {
 
     const { data } = await octokit.repos.listReleases({ owner, repo })
     const drafts = data.filter(d => d.draft === true && d.name.startsWith('v'))
+    console.log(`> draft length is ${drafts.length}`)
     if (drafts.length) {
       fs.writeFileSync(
         path.resolve('.', `changelog.json`),
