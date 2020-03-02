@@ -7,7 +7,7 @@ const { loadConfig, getRepoInfo } = require('shipjs-lib');
 dotenv.config({ path: path.resolve('.', '.env') })
 
 const { remote } = loadConfig('.');
-const { owner, repo } = getRepoInfo(remote, '.');
+const { owner, name: repo } = getRepoInfo(remote, '.');
 
 const getOctokit = () => {
   const octokit = new Octokit({
