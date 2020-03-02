@@ -2,11 +2,12 @@ const fs = require('fs')
 const path = require('path')
 const dotenv = require('dotenv')
 const { Octokit } = require('@octokit/rest')
-
-const owner = 'heavenshell'
-const repo = 'ts-react-boilerplate'
+const { loadConfig, getRepoInfo } = require('shipjs-lib');
 
 dotenv.config({ path: path.resolve('.', '.env') })
+
+const { remote } = loadConfig('.');
+const { owner, repo } = getRepoInfo(remote, '.');
 
 const getOctokit = () => {
   const octokit = new Octokit({
