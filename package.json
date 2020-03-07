@@ -14,7 +14,7 @@
     "@fullcalendar/resource-common": "4.4.0",
     "@fullcalendar/resource-timeline": "4.4.0",
     "@fullcalendar/timegrid": "4.4.0",
-    "antd": "4.0.0",
+    "antd": "4.0.1",
     "axios": "0.19.2",
     "date-fns": "2.10.0",
     "emotion": "10.0.27",
@@ -33,7 +33,7 @@
     "redux-aggregate": "2.1.2",
     "redux-thunk": "2.3.0",
     "styled-system": "5.1.5",
-    "yup": "0.28.1"
+    "yup": "0.28.3"
   },
   "devDependencies": {
     "@babel/core": "7.8.7",
