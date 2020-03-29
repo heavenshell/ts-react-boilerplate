@@ -6,6 +6,7 @@
     "automerge": false
   },
   "pinDigests": false,
+  "labels": ["dependencies"],
   "packageRules": [
     {
       "packagePatterns": [
