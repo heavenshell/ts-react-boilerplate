@@ -30,14 +30,14 @@ const TestProvider: React.FC<Props> = ({
   isRedux = true,
 }) => {
   const initialEntries: MemoryRouterProps['initialEntries'] = paths.map(
-    path => ({ pathname: path, search })
+    (path) => ({ pathname: path, search })
   )
   const initialIndex = initialPath ? paths.indexOf(initialPath) : 0
 
   const Router = () => (
     <MemoryRouter initialEntries={initialEntries} initialIndex={initialIndex}>
       <Switch>
-        {paths.map(path => (
+        {paths.map((path) => (
           <Route key={path} path={path} component={Component} render={render} />
         ))}
       </Switch>
