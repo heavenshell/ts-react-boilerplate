@@ -115,7 +115,7 @@
     "lint:md": "markdownlint README.md",
     "lint": "run-p -l lint:*",
     "test": "jest --maxWorkers=1",
-    "screenshot": "storycap --serverCmd 'start-storybook -p 6006' --serverTimeout 100000 http://localhost:6006 -i '**/Regression'",
+    "screenshot": "storycap --serverCmd 'start-storybook -p 6006' --serverTimeout 100000 http://localhost:6006 -i '**/regression'",
     "release:prepare": "shipjs prepare",
     "release:trigger": "shipjs trigger"
   },
