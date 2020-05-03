@@ -18,7 +18,7 @@ const getOctokit = () => {
   return octokit
 }
 
-const isDryRun = argv => {
+const isDryRun = (argv) => {
   return argv.includes('--dry-run')
 }
 
@@ -29,7 +29,7 @@ module.exports = {
   afterPublish: async () => {
     const octokit = getOctokit()
     const { data } = await octokit.repos.listReleases({ owner, repo })
-    const drafts = data.filter(d => d.draft === true && d.name.startsWith('v'))
+    const drafts = data.filter((d) => d.draft === true && d.name.startsWith('v'))
     if (drafts.length) {
       fs.writeFileSync(
         path.resolve('.', `changelog.json`),
