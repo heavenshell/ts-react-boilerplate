@@ -1,6 +1,8 @@
 import * as React from 'react'
 
-type ViewProps = {}
+type ViewProps = {
+  // Add view props here
+}
 
 type ActionProps = {
   onHomeLinkClick: (event: React.MouseEvent<HTMLAnchorElement>) => void

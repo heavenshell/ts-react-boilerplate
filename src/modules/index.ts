@@ -8,7 +8,9 @@ import {
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 import thunk, { ThunkDispatch, ThunkMiddleware } from 'redux-thunk'
 
-export type ReduxState = {}
+export type ReduxState = {
+  // Add state here
+}
 
 export const configureStore = (initialState?: ReduxState) => {
   const rootReducer = combineReducers({})

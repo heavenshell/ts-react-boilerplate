@@ -4,7 +4,10 @@ import { ReduxState } from '../modules'
 const defaultState = (param: any) => (param ? param : { isLoading: false })
 
 export const configureInitialState = (params: {
-  indexState?: {}
+  indexState?: {
+    // Add state here
+    // meState?: MeState
+  }
 }): ReduxState => ({
   index: defaultState(params.indexState),
 })
