@@ -7,9 +7,6 @@ import { withScreenshot } from 'storycap'
 import { Global, css } from '@emotion/core'
 import { ThemeProvider as StyledThemeProvider } from 'emotion-theming'
 
-// automatically import all files ending in *.stories.tsx
-const req = require.context('../src/components', true, /\.stories\.tsx?$/)
-
 const globalStyle = css`
   * {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
@@ -68,5 +65,3 @@ addParameters({
     },
   },
 })
-
-configure(req, module)
