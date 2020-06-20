@@ -10859,10 +10859,10 @@ libnpmteam@^1.0.1:
     get-stream "^4.0.0"
     npm-registry-fetch "^4.0.0"
 
-libreact@2.13.2:
-  version "2.13.2"
-  resolved "https://registry.yarnpkg.com/libreact/-/libreact-2.13.2.tgz#f725a00aedeb24ac75fce969b2e3e26e8e51942c"
-  integrity sha512-kN43h6cNd5O+JmuTbPzWj/dDdEeanT1puyZsEeyIRpg3ILXnzcj60CataqiVVXRc74H981HCplELQNsCp2sI8A==
+libreact@2.13.3:
+  version "2.13.3"
+  resolved "https://registry.yarnpkg.com/libreact/-/libreact-2.13.3.tgz#6a5a009dc92a6fa4afcb2c71d36e823a3fcb1bb6"
+  integrity sha512-vhtSt4o0Di0lp3xD+qVI8/JXJHNGAwn6P9wTO8hPNt/QQnBEpMKFc9Bn+WGe2m0pVjn2smPyDVG2d3R1+WYrHA==
   dependencies:
     fast-af "^0.1.0"
     nano-css "^1.13.0"
@@ -10871,7 +10871,6 @@ libreact@2.13.2:
     react-universal-interface "^0.3.1"
     screenfull "^3.3.2"
     throttle-debounce "^2.0.1"
-    tslib "^1.9.0"
 
 lines-and-columns@^1.1.6:
   version "1.1.6"
