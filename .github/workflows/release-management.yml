@@ -4,10 +4,14 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    types:
+      - closed
 
 jobs:
   update_draft_release:
     runs-on: ubuntu-latest
+    if: startsWith(github.head_ref, 'master')
     steps:
       - uses: toolmantim/release-drafter@v5.2.0
         env:
@@ -15,6 +19,7 @@ jobs:
 
   release:
     name: Release
+    needs: update_draft_release
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'releases/v')
     steps:
