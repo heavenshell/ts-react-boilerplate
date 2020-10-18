@@ -6,7 +6,7 @@ import Home from './containers/Home'
 const Routes = () => (
   <HashRouter>
     <Switch>
-      <Route component={Home} exact={true} path={'/'} />
+      <Route component={Home} path="/" exact />
     </Switch>
   </HashRouter>
 )

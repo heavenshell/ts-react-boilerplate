@@ -5,6 +5,7 @@ import {
   createStore,
   StoreEnhancer,
 } from 'redux'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 import thunk, { ThunkDispatch, ThunkMiddleware } from 'redux-thunk'
 

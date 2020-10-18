@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { mount } from 'enzyme'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { createMemoryHistory } from 'history'
 import { renderHook, act } from '@testing-library/react-hooks'
 
