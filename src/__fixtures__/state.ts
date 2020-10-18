@@ -1,7 +1,7 @@
 import { ReduxState } from '../modules'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const defaultState = (param: any) => (param ? param : { isLoading: false })
+const defaultState = (param: any) => param || { isLoading: false }
 
 export const configureInitialState = (params: {
   indexState?: {
