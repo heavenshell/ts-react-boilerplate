@@ -1,11 +1,12 @@
-import { Configuration } from 'webpack'
-import { default as HtmlWebpackPlugin } from 'html-webpack-plugin'
-import { default as MiniCssExtractPlugin } from 'mini-css-extract-plugin'
-import { default as TerserPlugin } from 'terser-webpack-plugin'
-import { default as OptimizeCSSAssetsPlugin } from 'optimize-css-assets-webpack-plugin'
+import os from 'os'
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const TsConfigWebpackPlugin = require('ts-config-webpack-plugin')
+import { Configuration } from 'webpack'
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import TerserPlugin from 'terser-webpack-plugin'
+
+const workers = os.cpus().length - 1
 
 const config: Configuration = {
   devtool: 'source-map',
@@ -17,8 +18,37 @@ const config: Configuration = {
     path: `${__dirname}/dist`,
     publicPath: '/',
   },
+  devServer: {
+    historyApiFallback: {
+      rewrites: [{ from: /^\/*/, to: '/index.html' }],
+    },
+    host: '0.0.0.0',
+    port: 3000,
+    hot: true,
+    liveReload: true,
+  },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        use: [
+          { loader: 'cache-loader' },
+          {
+            loader: 'thread-loader',
+            options: {
+              // there should be 1 cpu for the fork-ts-checker-webpack-plugin
+              workers,
+              poolTimeout: Infinity, // set this to Infinity in watch mode - see https://github.com/webpack-contrib/thread-loader
+            },
+          },
+          {
+            loader: 'ts-loader',
+            options: {
+              happyPackMode: true, // IMPORTANT! use happyPackMode mode to speed-up compilation and reduce errors reported to webpack
+            },
+          },
+        ],
+      },
       {
         test: /\.less$/,
         use: [
@@ -40,10 +70,9 @@ const config: Configuration = {
   },
   performance: { hints: false },
   optimization: {
-    minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})],
+    minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
   },
   plugins: [
-    new TsConfigWebpackPlugin(),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
