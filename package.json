@@ -116,7 +116,7 @@
   },
   "scripts": {
     "build": "webpack --mode production",
-    "build-storybook": "build-storybook",
+    "build-storybook": "build-storybook --quiet",
     "precommit": "lint-staged",
     "start": "webpack-cli serve --mode development --env development --progress --color",
     "storybook": "start-storybook -p 6006",
