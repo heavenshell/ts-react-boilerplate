@@ -1,4 +1,8 @@
-const TsConfigWebpackPlugin = require('ts-config-webpack-plugin')
+// const TsConfigWebpackPlugin = require('ts-config-webpack-plugin')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+
+const cpus = require('os').cpus().length
+const tsLoaderWorkers = cpus > 3 ? cpus - 2 : 1
 
 module.exports = {
   stories: ['../src/components/**/*.stories.tsx'],
@@ -15,8 +19,31 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.tsx?$/,
+        use: [
+          {
+            loader: 'cache-loader',
+          },
+          {
+            loader: 'ts-loader',
+            options: {
+              happyPackMode: true, // IMPORTANT! use happyPackMode mode to speed-up compilation and reduce errors reported to webpack
+              transpileOnly: true,
+            },
+          },
+          {
+            // run compilation threaded
+            loader: require.resolve('thread-loader'),
+            options: {
+              // there should be 1 cpu for the fork-ts-checker-webpack-plugin
+              workers: tsLoaderWorkers,
+            },
+          },
+        ],
+      },
     )
-    config.plugins.push(new TsConfigWebpackPlugin())
+    config.plugins.push(new ForkTsCheckerWebpackPlugin({ async: true }))
     config.resolve.extensions.push('.ts', '.tsx', '.js', '.jsx')
     return config
   }
