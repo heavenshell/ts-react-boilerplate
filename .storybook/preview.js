@@ -5,7 +5,7 @@ import { addParameters } from '@storybook/react'
 import { withScreenshot } from 'storycap'
 
 import { Global, css } from '@emotion/core'
-import { ThemeProvider as StyledThemeProvider } from 'emotion-theming'
+import { ThemeProvider as StyledThemeProvider } from '@emotion/react'
 
 const globalStyle = css`
   * {
