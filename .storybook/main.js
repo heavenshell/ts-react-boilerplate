@@ -1,4 +1,3 @@
-// const TsConfigWebpackPlugin = require('ts-config-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 const cpus = require('os').cpus().length
@@ -34,7 +33,7 @@ module.exports = {
           },
           {
             // run compilation threaded
-            loader: require.resolve('thread-loader'),
+            loader: 'thread-loader',
             options: {
               // there should be 1 cpu for the fork-ts-checker-webpack-plugin
               workers: tsLoaderWorkers,

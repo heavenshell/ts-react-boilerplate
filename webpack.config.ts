@@ -7,11 +7,6 @@ import TerserPlugin from 'terser-webpack-plugin'
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin'
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-// const TsConfigWebpackPlugin = require('ts-config-webpack-plugin')
-
-// const workers = os.cpus().length - 1
-
 const cpus = os.cpus().length
 const tsLoaderWorkers = cpus > 3 ? cpus - 2 : 1
 
@@ -51,7 +46,7 @@ const config: Configuration = {
           },
           {
             // run compilation threaded
-            loader: require.resolve('thread-loader'),
+            loader: 'thread-loader',
             options: {
               // there should be 1 cpu for the fork-ts-checker-webpack-plugin
               workers: tsLoaderWorkers,
