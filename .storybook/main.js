@@ -1,4 +1,4 @@
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+// const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 const cpus = require('os').cpus().length
 const tsLoaderWorkers = cpus > 3 ? cpus - 2 : 1
@@ -28,7 +28,7 @@ module.exports = {
             loader: 'ts-loader',
             options: {
               happyPackMode: true, // IMPORTANT! use happyPackMode mode to speed-up compilation and reduce errors reported to webpack
-              transpileOnly: true,
+              // transpileOnly: true,
             },
           },
           {
@@ -42,7 +42,7 @@ module.exports = {
         ],
       },
     )
-    config.plugins.push(new ForkTsCheckerWebpackPlugin({ async: true }))
+    // config.plugins.push(new ForkTsCheckerWebpackPlugin({ async: true }))
     config.resolve.extensions.push('.ts', '.tsx', '.js', '.jsx')
     return config
   }

@@ -1,11 +1,11 @@
 import os from 'os'
 
 import { Configuration } from 'webpack'
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import TerserPlugin from 'terser-webpack-plugin'
-import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin'
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
+// import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 
 const cpus = os.cpus().length
 const tsLoaderWorkers = cpus > 3 ? cpus - 2 : 1
@@ -41,7 +41,6 @@ const config: Configuration = {
             loader: 'ts-loader',
             options: {
               happyPackMode: true, // IMPORTANT! use happyPackMode mode to speed-up compilation and reduce errors reported to webpack
-              transpileOnly: true,
             },
           },
           {
@@ -75,13 +74,12 @@ const config: Configuration = {
   },
   performance: { hints: false },
   optimization: {
-    minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})],
+    minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
   },
   plugins: [
-    // new TsConfigWebpackPlugin(),
-    new ForkTsCheckerWebpackPlugin({
-      async: true,
-    }),
+    // new ForkTsCheckerWebpackPlugin({
+    //   async: true,
+    // }),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
