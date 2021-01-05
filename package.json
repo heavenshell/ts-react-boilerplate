@@ -117,7 +117,7 @@
     "build": "webpack --mode production",
     "build-storybook": "build-storybook",
     "precommit": "lint-staged",
-    "start": "webpack serve --mode development --open --history-api-fallback",
+    "start": "webpack serve --mode development --open",
     "storybook": "start-storybook -p 6006",
     "lint:ts": "eslint --cache 'src/**/*.ts{,x}'",
     "lint:md": "markdownlint README.md",
