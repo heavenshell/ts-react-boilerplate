@@ -5,6 +5,7 @@ import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import TerserPlugin from 'terser-webpack-plugin'
+// TODO https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/pull/556
 // import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 
 const cpus = os.cpus().length
@@ -41,6 +42,7 @@ const config: Configuration = {
             loader: 'ts-loader',
             options: {
               happyPackMode: true, // IMPORTANT! use happyPackMode mode to speed-up compilation and reduce errors reported to webpack
+              // transpileOnly: true, TODO
             },
           },
           {
@@ -77,6 +79,7 @@ const config: Configuration = {
     minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
   },
   plugins: [
+    // TODO
     // new ForkTsCheckerWebpackPlugin({
     //   async: true,
     // }),
