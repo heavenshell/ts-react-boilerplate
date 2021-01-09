@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { mount } from 'enzyme'
+import { render } from '@testing-library/react'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createMemoryHistory } from 'history'
 import { renderHook, act } from '@testing-library/react-hooks'
@@ -10,9 +10,12 @@ import TestProvider from '../../__fixtures__/TestProvider'
 
 describe('<Home />', () => {
   it('should onCounterLinkClick', () => {
-    const renderer = mount(
-      <TestProvider component={Home} paths={['/']} isRedux={false} />
-    )
+    // TODO enzyme does not support React 17
+    // const renderer = mount(
+    //   <TestProvider component={Home} paths={['/']} isRedux={false} />
+    // )
+
+    render(<TestProvider component={Home} paths={['/']} isRedux={false} />)
     const history = createMemoryHistory()
     const mockHistoryPush = jest.fn().mockName('history.push')
     history.push = mockHistoryPush
@@ -42,9 +45,9 @@ describe('<Home />', () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onHomeLinkClick(mockClickEvent as any)
     })
-
     expect(mockClickEvent.preventDefault).toHaveBeenCalled()
-    renderer.update()
+    // TODO enzyme does not support React 17
+    // renderer.update()
 
     expect(mockHistoryPush).toHaveBeenCalledTimes(1)
     expect(mockHistoryPush).toHaveBeenCalledWith('/')
