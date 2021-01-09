@@ -4,9 +4,12 @@ import { Configuration } from 'webpack'
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import TerserPlugin from 'terser-webpack-plugin'
+
 // TODO https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/pull/556
 // import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const TerserPlugin = require('terser-webpack-plugin')
 
 const cpus = os.cpus().length
 const tsLoaderWorkers = cpus > 3 ? cpus - 2 : 1
