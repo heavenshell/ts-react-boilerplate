@@ -1,5 +1,7 @@
 import * as React from 'react'
 import { Provider } from 'react-redux'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { createMemoryHistory } from 'history'
 import { MemoryRouter, Route, Switch, RouteProps } from 'react-router-dom'
 import { MemoryRouterProps } from 'react-router'
 
@@ -19,6 +21,37 @@ export type Props = MemoryRouterProps &
     render?: RouteProps['render']
     initialState?: ReduxState
   }
+
+type RouterProps = {
+  path: string
+  search?: string
+  params?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+}
+
+export const getRouters = ({ path, params }: RouterProps) => {
+  const history = createMemoryHistory()
+  const mockHistoryPush = jest.fn().mockName('history.push')
+  history.push = mockHistoryPush
+
+  const location = {
+    hash: '#',
+    pathname: path,
+    search: '',
+    state: undefined,
+  }
+  const match = {
+    params: params || {},
+    isExact: true,
+    path,
+    url: '/',
+  }
+
+  const mockClickEvent = {
+    preventDefault: jest.fn().mockName('preventDefault'),
+  }
+
+  return { history, location, match, mockHistoryPush, mockClickEvent }
+}
 
 const TestProvider: React.FC<Props> = ({
   component: Component,

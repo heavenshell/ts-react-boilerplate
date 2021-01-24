@@ -13,9 +13,9 @@ export type ReduxState = {
   // Add state here
 }
 
-export const configureStore = (initialState?: ReduxState) => {
-  const rootReducer = combineReducers({})
+export const rootReducer = combineReducers({})
 
+export const configureStore = (initialState?: ReduxState) => {
   return createStore(
     rootReducer,
     initialState || {},
