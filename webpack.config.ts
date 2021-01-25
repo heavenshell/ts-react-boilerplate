@@ -1,4 +1,4 @@
-import os from 'os'
+import { cpus } from 'os'
 
 import { Configuration } from 'webpack'
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
@@ -12,14 +12,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const TerserPlugin = require('terser-webpack-plugin')
 
-const cpus = os.cpus().length
-const tsLoaderWorkers = cpus > 3 ? cpus - 2 : 1
+const tsLoaderWorkers = cpus.length > 3 ? cpus.length - 2 : 1
 
-type DevServer = {
-  [key: string]: any // eslint-disable-line @typescript-eslint/no-explicit-any
-}
-
-const config: Configuration & DevServer = {
+const config: Configuration = {
   devtool: 'source-map',
   entry: {
     app: `${__dirname}/src/App.tsx`,
